@@ -17,6 +17,11 @@ spring:
 initializr:
   env:
     boms:
+      cloud-task-bom:
+        groupId: org.springframework.cloud
+        artifactId: spring-cloud-task-dependencies
+        version: 1.1.0.RC1
+        repositories: spring-snapshots,spring-milestones
       cloud-bom:
         groupId: org.springframework.cloud
         artifactId: spring-cloud-dependencies
@@ -38,6 +43,12 @@ initializr:
         artifactId: spring-cloud-dataflow-dependencies
         version: 1.0.1.RELEASE
         additionalBoms: [cloud-bom]
+        repositories: spring-snapshots,spring-milestones
+      cloud-dataflow-k8s-bom:
+        groupId: org.springframework.cloud
+        artifactId: spring-cloud-dataflow-server-kubernetes-dependencies
+        version: 1.1.0.RC1
+        additionalBoms: [cloud-bom, cloud-task-bom]
         repositories: spring-snapshots,spring-milestones
       cloud-services-bom:
         groupId: io.pivotal.spring.cloud
@@ -569,6 +580,12 @@ initializr:
           description: Local Data Flow Server implementation
           groupId: org.springframework.cloud
           artifactId: spring-cloud-starter-dataflow-server-local
+        - name: Kubernetes Data Flow Server
+          id: cloud-dataflow-server-k8s
+          description: Data Flow Server implementation for Kubernetes
+          groupId: org.springframework.cloud
+          artifactId: spring-cloud-starter-dataflow-server-kubernetes
+          bom: cloud-dataflow-k8s-bom
         - name: Data Flow Shell
           id: cloud-dataflow-shell
           description: Data Flow Shell
